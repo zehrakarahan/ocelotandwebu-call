@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<button onclick="TiklaGelsin()">Tikla</button>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var sonuc = new Array();
+    function Deneme() {
+        $.ajax({
+            method: "GET",
+            url: "http://localhost:5000/customerapigateway/customer/CustomerGet",
+            dataType: "json",
+            success: function (result) {
+                if (result.length != null || result!=null) {
+                    for (var i = 0; i < result.length; i++) {
+                        sonuc.push(result[i]);
+                    }
+                }
+            },
+            error: function (result) {
+                console.log(result);
+                // return result;
+            }
+        });
+    }
+    function TiklaGelsin() {
+        console.log("tikladi");
+        Deneme();
+        console.log(sonuc);
+       // var sonuc2 = istekAtma();
+        //$.ajax({
+        //    method: "GET",
+        //    url: "http://localhost:5000/customerapigateway/customer/CustomerGet",
+        //    dataType: "json",
+        //    success: function (result) {
+
+               
+        //        sonuc = result;
+        //        //  return sonuc;
+        //        console.log(sonuc);
+
+        //    },
+        //    error: function (result) {
+        //          console.log(result);
+        //       // return result;
+        //    }
+        //});
+    }
+</script>
